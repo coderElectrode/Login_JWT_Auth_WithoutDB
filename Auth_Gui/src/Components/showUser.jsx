@@ -7,25 +7,25 @@ const showUser = () => {
 
   const location = useLocation();
   var user = [];
+  const token=location.state.token;
 
 
   useEffect(() => {
     axios.get("http://localhost:9080/user", {
-      headers: { authorization: location.state.id }
+      headers: { authorization: location.state.token }
     }).then(res => {
       console.log(res.data.data[0]);
       user = res.data.data;
       console.log("User:", user);
-      user.map((ele) => {
 
-        console.log("ELE: ", ele.name);
-      })
-
-
-    });
+    })
+    .catch(err=>{
+      alert(err);
+    })
 
   }, [])
   return (
+ 
     <div>showUser
       <div>
         <table>

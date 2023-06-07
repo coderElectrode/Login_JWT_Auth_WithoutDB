@@ -47,7 +47,7 @@ function Login() {
     }
 
     const showUser=(data2)=>{
-        navigate('/user', { state: { id:data2.token } });
+        navigate('/user', { state: { token:data2.token } });
 
     };
 

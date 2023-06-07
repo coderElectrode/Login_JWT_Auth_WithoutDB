@@ -30,7 +30,7 @@ const signup=(req,res,next)=>{
 const login=(req,res)=>{
 
     // issuing the jwt 
-   const  token = jwt.sign({username:req.body.username}, process.env.JWTKEY);
+   const  token = jwt.sign({username:req.body.username}, process.env.JWTKEY,{expiresIn:'60s' });
    res.json({
         status:"Success",
         token:token,
