@@ -6,7 +6,7 @@ import { useLocation } from 'react-router-dom'
 const showUser = () => {
 
   const location = useLocation();
-  var user = [];
+  var [user, setUser]=useState([]);
   const token=location.state.token;
 
 
@@ -14,21 +14,21 @@ const showUser = () => {
     axios.get("http://localhost:9080/user", {
       headers: { authorization: location.state.token }
     }).then(res => {
-      console.log(res.data.data[0]);
-      user = res.data.data;
-      console.log("User:", user);
+      console.log("Res:",res.data.data);
+      setUser( res.data.data);
+      
 
     })
     .catch(err=>{
       alert(err);
     })
 
-  }, [])
+  }, []);
   return (
  
-    <div>showUser
+    <div>Show User{console.log("User:", user)}
       <div>
-        <table>
+        <table border={2}>
           <thead>
             <tr>
               <th>Sr.NO.</th>
@@ -40,18 +40,19 @@ const showUser = () => {
           <tbody>
             {
 
-              user.map((ele, i) => {
-                console.log("Returnig user");
+              user.map((ele,i) => {
+                console.log("Returnig user",ele);
 
-                return (
+                 return (
 
                   <tr key={i}>
 
-                    <td>{i + 1}</td>
-                    <td>{ele.id}</td>
-                    <td>{ele.name}</td>
-                    <td>{ele.username}</td>
-                  </tr>);
+                     <td>{i + 1}</td>
+                     <td >{ele.id}</td>
+                     <td>{ele.name}</td>
+                     <td>{ele.username}</td>
+                   </tr> 
+                     );
 
               })
 
